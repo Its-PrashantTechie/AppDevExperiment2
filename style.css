@@ -1,0 +1,180 @@
+/* ===== Base ===== */
+:root {
+  --forest: #14342b;
+  --forest-2: #1d4a3d;
+  --cream: #f4efe6;
+  --paper: #fffdf8;
+  --accent: #d9622b;
+  --accent-dark: #b84d1c;
+  --text: #25302c;
+  --muted: #6f7a75;
+  --line: #d9d2c4;
+  --bad: #c62828;
+  --good: #2e7d4f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Trebuchet MS", "Segoe UI", Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+/* ===== Split shell ===== */
+.shell {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  width: 100%;
+  max-width: 1020px;
+  background: var(--paper);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(20, 52, 43, 0.22);
+}
+
+/* ===== Left panel ===== */
+.brand-panel {
+  background: linear-gradient(170deg, var(--forest) 0%, var(--forest-2) 100%);
+  color: #eef3f0;
+  padding: 44px 32px;
+}
+.brand-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: #ffb48d;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.brand-panel h1 { font-family: Georgia, serif; font-size: 2.2rem; line-height: 1.15; margin: 20px 0 14px; }
+.brand-text { color: #b9c9c2; font-size: 0.95rem; }
+.rule-list { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+.rule-list li {
+  font-size: 0.85rem;
+  padding-left: 22px;
+  position: relative;
+  color: #d3e0da;
+}
+.rule-list li::before {
+  content: "";
+  position: absolute; left: 0; top: 7px;
+  width: 9px; height: 9px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+/* ===== Form panel ===== */
+.form-panel { padding: 40px 44px; }
+.group-title {
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--forest);
+  margin: 6px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--line);
+}
+.group-title:not(:first-child) { margin-top: 22px; }
+.req { color: var(--bad); }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.field { display: flex; flex-direction: column; margin-bottom: 14px; }
+.field > label, .label-text { font-weight: 600; font-size: 0.88rem; margin-bottom: 4px; color: var(--forest); }
+
+/* Underline-style inputs */
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="password"], input[type="date"], textarea {
+  width: 100%;
+  padding: 10px 4px;
+  border: none;
+  border-bottom: 2px solid var(--line);
+  background: transparent;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s;
+}
+textarea { resize: vertical; }
+input:focus, textarea:focus { outline: none; border-bottom-color: var(--accent); background: rgba(217, 98, 43, 0.05); }
+input.invalid, textarea.invalid { border-bottom-color: var(--bad); background: rgba(198, 40, 40, 0.05); }
+input.valid, textarea.valid { border-bottom-color: var(--good); }
+
+.radio-group { display: flex; gap: 12px; padding-top: 6px; flex-wrap: wrap; }
+.radio-group label {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+.radio-group label:hover { border-color: var(--accent); }
+.radio-group label:has(input:checked) { background: var(--forest); border-color: var(--forest); color: #fff; }
+.radio-group input { accent-color: var(--accent); }
+
+.checkbox label { display: flex; align-items: center; gap: 8px; font-weight: 400; cursor: pointer; font-size: 0.9rem; }
+.checkbox input { accent-color: var(--accent); width: 16px; height: 16px; }
+
+.error { color: var(--bad); font-size: 0.8rem; min-height: 1.1em; margin-top: 4px; }
+.meta-line { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.counter { font-size: 0.78rem; color: var(--muted); margin-top: 4px; white-space: nowrap; }
+.counter.ok { color: var(--good); }
+
+/* Password helpers */
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 56px; }
+.pw-toggle {
+  position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--accent); font-weight: 600; font-size: 0.8rem; padding: 4px 6px;
+}
+.pw-toggle:hover { color: var(--accent-dark); }
+
+.strength { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.strength-track { flex: 1; height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.strength-bar { height: 100%; width: 0; border-radius: 3px; transition: width 0.25s, background 0.25s; }
+.strength span { font-size: 0.75rem; color: var(--muted); min-width: 52px; text-align: right; }
+
+/* Buttons */
+.actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px; }
+.btn { padding: 11px 30px; border-radius: 999px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+.btn-primary { background: var(--accent); color: #fff; border: 2px solid var(--accent); }
+.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-light { background: transparent; color: var(--forest); border: 2px solid var(--line); }
+.btn-light:hover { border-color: var(--forest); }
+
+/* Success */
+.success {
+  margin-top: 24px;
+  padding: 20px 22px;
+  border-radius: 12px;
+  background: #eaf5ee;
+  border-left: 5px solid var(--good);
+  color: #1c4a2f;
+}
+.success h3 { font-family: Georgia, serif; margin-bottom: 10px; }
+.success dl { display: grid; grid-template-columns: 130px 1fr; gap: 6px 12px; }
+.success dt { font-weight: 700; }
+.success dd { word-break: break-word; }
+.hidden { display: none; }
+
+/* ===== Responsive ===== */
+@media (max-width: 860px) {
+  .shell { grid-template-columns: 1fr; }
+  .brand-panel { padding: 30px 26px; }
+  .rule-list { display: none; }
+  .form-panel { padding: 28px 24px; }
+}
+@media (max-width: 560px) {
+  .row { grid-template-columns: 1fr; gap: 0; }
+  .success dl { grid-template-columns: 1fr; }
+}

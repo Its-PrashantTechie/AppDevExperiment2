@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the Club | Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="shell">
+
+    <!-- ===== Left info panel ===== -->
+    <aside class="brand-panel">
+      <p class="brand-tag">Registration</p>
+      <h1>Create your<br>account</h1>
+      <p class="brand-text">Fill in the details on the right. Every field is checked as you type, so you can fix mistakes before submitting.</p>
+      <ul class="rule-list">
+        <li>Name: 3-50 letters, spaces or dots</li>
+        <li>Phone: 10 digits starting with 6-9</li>
+        <li>PIN code: 6 digits, not starting with 0</li>
+        <li>Password: 8+ chars, upper, lower, number, symbol</li>
+      </ul>
+    </aside>
+
+    <!-- ===== Form ===== -->
+    <main class="form-panel">
+      <form id="registerForm" novalidate>
+
+        <h2 class="group-title">Personal details</h2>
+        <div class="row">
+          <div class="field">
+            <label for="fullName">Full name <span class="req">*</span></label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Prashant Sharma" autocomplete="name">
+            <span class="error" id="fullNameError"></span>
+          </div>
+          <div class="field">
+            <label for="dob">Date of birth <span class="req">*</span></label>
+            <input type="date" id="dob" name="dob">
+            <span class="error" id="dobError"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label-text">Gender <span class="req">*</span></span>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male"> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </div>
+          <span class="error" id="genderError"></span>
+        </div>
+
+        <h2 class="group-title">Contact</h2>
+        <div class="row">
+          <div class="field">
+            <label for="email">Email ID <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email">
+            <span class="error" id="emailError"></span>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile" maxlength="10" autocomplete="tel">
+            <span class="error" id="phoneError"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="address">Address <span class="req">*</span></label>
+          <textarea id="address" name="address" rows="3" placeholder="House no, street, area"></textarea>
+          <div class="meta-line">
+            <span class="error" id="addressError"></span>
+            <span class="counter" id="addressCount">0 / 10 min</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="city">City <span class="req">*</span></label>
+            <input type="text" id="city" name="city" placeholder="e.g. Coimbatore">
+            <span class="error" id="cityError"></span>
+          </div>
+          <div class="field">
+            <label for="pincode">PIN code <span class="req">*</span></label>
+            <input type="text" id="pincode" name="pincode" placeholder="6 digits" maxlength="6" inputmode="numeric">
+            <span class="error" id="pincodeError"></span>
+          </div>
+        </div>
+
+        <h2 class="group-title">Security</h2>
+        <div class="row">
+          <div class="field">
+            <label for="password">Password <span class="req">*</span></label>
+            <div class="pw-wrap">
+              <input type="password" id="password" name="password" autocomplete="new-password">
+              <button type="button" class="pw-toggle" data-target="password">Show</button>
+            </div>
+            <div class="strength" aria-hidden="true">
+              <div class="strength-track"><div class="strength-bar" id="strengthBar"></div></div>
+              <span id="strengthLabel">Strength</span>
+            </div>
+            <span class="error" id="passwordError"></span>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm password <span class="req">*</span></label>
+            <div class="pw-wrap">
+              <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password">
+              <button type="button" class="pw-toggle" data-target="confirmPassword">Show</button>
+            </div>
+            <span class="error" id="confirmPasswordError"></span>
+          </div>
+        </div>
+
+        <div class="field checkbox">
+          <label><input type="checkbox" id="terms" name="terms"> I accept the terms and conditions <span class="req">*</span></label>
+          <span class="error" id="termsError"></span>
+        </div>
+
+        <div class="actions">
+          <button type="reset" class="btn btn-light">Clear</button>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+
+        <div id="successBox" class="success hidden" role="status"></div>
+      </form>
+    </main>
+
+  </div>
+
+  <script src="validation.js"></script>
+</body>
+</html>
